@@ -1,16 +1,17 @@
-import { Box, Button, Center, VStack } from "@chakra-ui/react";
+import { Button, VStack } from "@chakra-ui/react";
 import type { NextPage } from "next";
+import Link from "next/link";
+import Template from "../src/components/template/Template";
 
 const Home: NextPage = () => {
   return (
-    <Box bg="gray.800" h="900" w={"100%"} color={"white"}>
-      <Center fontSize="5xl" p={"6"} h="20%">
-        カラオケサイト
-      </Center>
+    <Template title="カラオケサイト">
       <VStack h="80%" spacing="10">
-        <Button w="30%" h="10%" bg={"blue.500"}>
-          検索
-        </Button>
+        <Link href="/search">
+          <Button w="30%" h="10%" bg={"blue.500"}>
+            検索
+          </Button>
+        </Link>
         <Button w="30%" h="10%" bg={"red.500"}>
           記録
         </Button>
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
           履歴
         </Button>
       </VStack>
-    </Box>
+    </Template>
   );
 };
 
