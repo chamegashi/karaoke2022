@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <Button w="30%" h="10%" bg={"red.500"}>
           記録
         </Button>
-        <Button w="30%" h="10%" bg={"green.500"}>
+        <Button w="30%" h="10%" colorScheme="teal">
           履歴
         </Button>
       </VStack>
