@@ -6,7 +6,7 @@ import Template from "../src/components/template/Template";
 const Home: NextPage = () => {
   return (
     <Template title="カラオケサイト">
-      <VStack h="80%" spacing="10">
+      <VStack h={"xl"} spacing="10">
         <Link href="/search">
           <Button w="30%" h="10%" bg={"blue.500"}>
             検索

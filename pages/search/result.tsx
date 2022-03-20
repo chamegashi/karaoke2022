@@ -1,23 +1,19 @@
 import type { NextPage } from "next";
 import Template from "../../src/components/template/Template";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Center, HStack, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { GetSearchResultData } from "../../src/api/searchApi";
 import { Content, ContentsResponse } from "../../src/types";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Search: NextPage = () => {
   const router = useRouter();
-  const [contentResponce, setContentResponce] = useState<ContentsResponse>();
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [joyContents, setJoyContents] = useState<Content[]>([]);
   const [damContents, setDamContents] = useState<Content[]>([]);
 
   const { getFn, response, error, loading } = GetSearchResultData();
-
-  useEffect(() => {
-    getFn("test");
-  }, []);
 
   useEffect(() => {
     if (!router.query) {
@@ -28,7 +24,7 @@ const Search: NextPage = () => {
       setSearchKeyword(query.keyword);
       getFn(query.keyword);
     }
-  }, [getFn, router.query]);
+  }, [router.query]);
 
   useEffect(() => {
     if (!response) {
@@ -48,8 +44,22 @@ const Search: NextPage = () => {
     <Template title="検索結果">
       <Box>
         {loading && <Text>Loading...</Text>}
+
+        <Center>
+          <Link href="/search">
+            <Button colorScheme={"teal"}>前の画面に戻る</Button>
+          </Link>
+        </Center>
+
         {joyContents.map((content, index) => {
-          return <Box>{content.artist}</Box>;
+          return (
+            <Box key={content.songId} border={"2px"} m={2} rounded={"md"}>
+              <HStack p={"4"}>
+                <Text>{content.song}</Text>
+                <Text>{content.artist}</Text>
+              </HStack>
+            </Box>
+          );
         })}
       </Box>
     </Template>
