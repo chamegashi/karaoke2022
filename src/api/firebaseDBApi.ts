@@ -1,32 +1,17 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { Content } from "../types";
+import { Content, MusicData } from "../types";
 import { musicsUrl } from "../../config";
-
-export type contentsResponse = {
-  damResponce: Content[];
-  joyResponce: Content[];
-};
 
 export const firebasePutMusicData = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState<Error | null>(null);
 
-  const getFn = useCallback(async () => {
+  const getFn = useCallback(async (data: MusicData) => {
     setLoading(true);
 
     const url = `${musicsUrl}/uuid.json`;
-    const data = {
-      name: "タイトル",
-      hiragana_name: "たいとる",
-      max_range: "hiA",
-      user_id: "massann",
-      key: -4,
-      modified: "timestamp",
-      created: "timestamp",
-    };
-
     await axios
       .put(url, data)
       .then(async (res) => {
