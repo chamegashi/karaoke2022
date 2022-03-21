@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { Content, MusicData } from "../types";
+import { MusicData } from "../types";
 import { musicsUrl } from "../../config";
 
 export const firebasePutMusicData = () => {
@@ -11,7 +11,7 @@ export const firebasePutMusicData = () => {
   const getFn = useCallback(async (data: MusicData) => {
     setLoading(true);
 
-    const url = `${musicsUrl}/uuid.json`;
+    const url = `${musicsUrl}/${data.music_id}.json`;
     await axios
       .put(url, data)
       .then(async (res) => {
