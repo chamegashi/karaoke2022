@@ -12,9 +12,11 @@ const Home: NextPage = () => {
             検索
           </Button>
         </Link>
-        <Button w="30%" h="10%" bg={"red.500"}>
-          記録
-        </Button>
+        <Link href="/database">
+          <Button w="30%" h="10%" bg={"red.500"}>
+            記録
+          </Button>
+        </Link>
         <Button w="30%" h="10%" colorScheme="teal">
           履歴
         </Button>
