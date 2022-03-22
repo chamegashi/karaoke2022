@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { MusicData } from "../types";
+import { MusicDatum } from "../types";
 import { musicsUrl } from "../../config";
 
 export const firebasePutMusicData = () => {
@@ -8,7 +8,7 @@ export const firebasePutMusicData = () => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState<Error | null>(null);
 
-  const getFn = useCallback(async (data: MusicData) => {
+  const getFn = useCallback(async (data: MusicDatum) => {
     setLoading(true);
 
     const url = `${musicsUrl}/${data.music_id}.json`;
@@ -17,6 +17,37 @@ export const firebasePutMusicData = () => {
       .then(async (res) => {
         const responseData = await res.data;
         setResponse(responseData);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+  return { loading, error, response, getFn };
+};
+
+export const firebaseSearchMusicData = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [response, setResponse] = useState<MusicDatum[]>([]);
+  const [error, setError] = useState<Error | null>(null);
+
+  const getFn = useCallback(async (user_id: string) => {
+    setLoading(true);
+
+    const url = `${musicsUrl}.json?orderBy="user_id"&equalTo="${user_id}"&print=pretty`;
+    await axios
+      .get(url)
+      .then(async (res) => {
+        const responseData: { [key: string]: MusicDatum } = await res.data;
+        let ret: MusicDatum[] = [];
+        for (const [key, value] of Object.entries(responseData)) {
+          ret.push(value);
+        }
+
+        setResponse(ret);
       })
       .catch((err) => {
         console.error(err);

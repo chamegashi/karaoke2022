@@ -23,6 +23,7 @@ import { FormEvent, useEffect, useState, VFC } from "react";
 import { KeyRange } from "../lib/rangeInfo";
 import { firebasePutMusicData } from "../api/firebaseDBApi";
 import React from "react";
+import { uuid } from "uuidv4";
 
 const DatabaseAddComponent: VFC = () => {
   const { getFn, response } = firebasePutMusicData();
@@ -70,7 +71,7 @@ const DatabaseAddComponent: VFC = () => {
       created: new Date().getTime(),
       modified: new Date().getTime(),
       user_id: "massann",
-      music_id: "testMusicId",
+      music_id: uuid(),
     });
   };
 
@@ -96,6 +97,27 @@ const DatabaseAddComponent: VFC = () => {
           <Text>アーティスト</Text>
           <Input placeholder="あーてぃすと" onChange={changeArtist}></Input>
         </label>
+      </Box>
+      <Box m={2}>
+        <Text>最高音</Text>
+        <Select
+          placeholder="最高音"
+          colorScheme={"teal"}
+          onChange={changeMaxKey}
+        >
+          {KeyRange.map((key) => {
+            return (
+              <option
+                className="dropdownOption"
+                value={key.key}
+                color={"black"}
+                key={key.id}
+              >
+                {key.key}
+              </option>
+            );
+          })}
+        </Select>
       </Box>
       <Box m={2}>
         <Text mb={8}>キー</Text>
@@ -129,27 +151,6 @@ const DatabaseAddComponent: VFC = () => {
           </SliderTrack>
           <SliderThumb />
         </Slider>
-      </Box>
-      <Box m={2}>
-        <Text>最高音</Text>
-        <Select
-          placeholder="最高音"
-          colorScheme={"teal"}
-          onChange={changeMaxKey}
-        >
-          {KeyRange.map((key) => {
-            return (
-              <option
-                className="dropdownOption"
-                value={key}
-                color={"black"}
-                key={key}
-              >
-                {key}
-              </option>
-            );
-          })}
-        </Select>
       </Box>
       <Box m={2}>
         <label>

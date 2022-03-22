@@ -1,6 +1,6 @@
 import { Box, Center } from "@chakra-ui/react";
 import { ReactChild, VFC } from "react";
-import { getWindowSize } from "../../getWindowSize";
+import { getWindowSize } from "../../states/getWindowSize";
 
 interface Props {
   title: string;

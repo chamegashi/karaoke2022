@@ -9,7 +9,7 @@ export interface ContentsResponse {
   joyResponce: Content[];
 }
 
-export interface MusicData {
+export interface MusicDatum {
   music_id: string;
   user_id: string;
   name: string;
