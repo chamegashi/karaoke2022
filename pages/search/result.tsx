@@ -1,11 +1,12 @@
-import type { NextPage } from "next";
-import Template from "../../src/components/template/Template";
 import { Box, Button, Center, HStack, Text, VStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { GetSearchResultData } from "../../src/api/searchApi";
-import { Content, ContentsResponse } from "../../src/types";
-import { useRouter } from "next/router";
+import type { NextPage } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
+import { GetSearchResultData } from "../../src/api/searchApi";
+import Template from "../../src/components/template/Template";
+import { Content } from "../../src/types";
 
 const Search: NextPage = () => {
   const router = useRouter();

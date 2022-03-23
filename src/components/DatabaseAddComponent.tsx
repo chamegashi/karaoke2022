@@ -14,16 +14,17 @@ import {
 import {
   AlertDialog,
   AlertDialogBody,
+  AlertDialogContent,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogContent,
   AlertDialogOverlay,
 } from "@chakra-ui/react";
 import { FormEvent, useEffect, useState, VFC } from "react";
-import { KeyRange } from "../lib/rangeInfo";
-import { firebasePutMusicData } from "../api/firebaseDBApi";
 import React from "react";
 import { uuid } from "uuidv4";
+
+import { firebasePutMusicData } from "../api/firebaseDBApi";
+import { KeyRange } from "../lib/rangeInfo";
 
 const DatabaseAddComponent: VFC = () => {
   const { getFn, response } = firebasePutMusicData();

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
+
 import { Content } from "../types";
 
 // const hostname = process.env.NEXT_PUBLIC_BASE_URI;
@@ -18,7 +19,7 @@ export const GetSearchResultData = () => {
   const getFn = useCallback(async (keyword: string) => {
     setLoading(true);
 
-    let url = `${hostname}/api/search?keyword=` + keyword;
+    const url = `${hostname}/api/search?keyword=` + keyword;
 
     await axios
       .get<contentsResponse>(url)

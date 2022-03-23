@@ -1,6 +1,7 @@
 import { Button, VStack } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Link from "next/link";
+
 import Template from "../src/components/template/Template";
 
 const Home: NextPage = () => {
@@ -17,9 +18,11 @@ const Home: NextPage = () => {
             記録
           </Button>
         </Link>
-        <Button w="30%" h="10%" colorScheme="teal">
-          履歴
-        </Button>
+        <Link href="/history">
+          <Button w="30%" h="10%" colorScheme="teal">
+            履歴
+          </Button>
+        </Link>
       </VStack>
     </Template>
   );

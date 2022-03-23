@@ -1,12 +1,13 @@
-import { Box, Button, HStack, Input, Select, Text } from "@chakra-ui/react";
+import { Box, HStack, Input, Select, Text } from "@chakra-ui/react";
 import React, { FormEvent, useState, VFC } from "react";
+
 import { KeyRange } from "../lib/rangeInfo";
 import { musicDataState } from "../states/musicData";
 
 const DatabaseSearchComponent: VFC = () => {
   const [keyword, setKeyword] = useState<string>("");
   const [maxKey, setMaxKey] = useState<string>("");
-  const { musicData, loading, musicFilter } = musicDataState("massann");
+  const { musicData, musicFilter } = musicDataState("massann");
 
   const changeTitle = (e: FormEvent<HTMLInputElement>) => {
     musicFilter(e.currentTarget.value);

@@ -5,13 +5,13 @@ import DatabaseAddComponent from "../../src/components/DatabaseAddComponent";
 import DatabaseSearchComponent from "../../src/components/DatabaseSearchComponent";
 import Template from "../../src/components/template/Template";
 
-const Home: NextPage = () => {
+const History: NextPage = () => {
   return (
-    <Template title="データベース">
+    <Template title="履歴">
       <Tabs isFitted size="md" variant="enclosed" align="center">
         <TabList mb="1em">
-          <Tab>検索</Tab>
-          <Tab>追加</Tab>
+          <Tab>Joy</Tab>
+          <Tab>Dam</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -26,4 +26,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default History;

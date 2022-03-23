@@ -1,8 +1,9 @@
-import type { NextPage } from "next";
-import Template from "../../src/components/template/Template";
 import { Box, Button, Center, Input } from "@chakra-ui/react";
-import { FormEvent, useState } from "react";
+import type { NextPage } from "next";
 import Link from "next/link";
+import { FormEvent, useState } from "react";
+
+import Template from "../../src/components/template/Template";
 
 const Search: NextPage = () => {
   const [searchWord, setSearchWord] = useState<string>("");

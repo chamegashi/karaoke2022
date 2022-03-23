@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { MusicDatum } from "../types";
+
 import { firebaseSearchMusicData } from "../api/firebaseDBApi";
+import { MusicDatum } from "../types";
 
 export const musicDataState = (user_id: string) => {
   const [allMusicData, setAllMusicData] = useState<MusicDatum[]>([]);
@@ -17,8 +18,6 @@ export const musicDataState = (user_id: string) => {
     }
     setAllMusicData(response);
     setMusicData(response);
-
-    console.log(response);
   }, [response]);
 
   useEffect(() => {
@@ -34,7 +33,11 @@ export const musicDataState = (user_id: string) => {
 
   const musicFilter = (keyword: string) => {
     const newMusics: MusicDatum[] = allMusicData.filter((music) => {
-      return music.name.includes(keyword) || music.artist.includes(keyword);
+      return (
+        music.name.includes(keyword) ||
+        music.artist.includes(keyword) ||
+        music.hiragarana_name.includes(keyword)
+      );
     });
     setMusicData(newMusics);
   };
