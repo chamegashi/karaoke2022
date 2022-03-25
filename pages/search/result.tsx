@@ -1,4 +1,15 @@
-import { Box, Button, Center, HStack, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  HStack,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -7,6 +18,7 @@ import { useEffect, useState } from "react";
 import { GetSearchResultData } from "../../src/api/searchApi";
 import Template from "../../src/components/template/Template";
 import { Content } from "../../src/types";
+import HashLoader from "react-spinners/HashLoader";
 
 const Search: NextPage = () => {
   const router = useRouter();
@@ -44,24 +56,107 @@ const Search: NextPage = () => {
   return (
     <Template title="検索結果">
       <Box>
-        {loading && <Text>Loading...</Text>}
-
         <Center>
           <Link href="/search">
-            <Button colorScheme={"teal"}>前の画面に戻る</Button>
+            <Button colorScheme={"teal"} mb={7}>
+              前の画面に戻る
+            </Button>
           </Link>
         </Center>
 
-        {joyContents.map((content, index) => {
-          return (
-            <Box key={content.songId} border={"2px"} m={2} rounded={"md"}>
-              <HStack p={"4"}>
-                <Text>{content.song}</Text>
-                <Text>{content.artist}</Text>
-              </HStack>
-            </Box>
-          );
-        })}
+        <Tabs isFitted size="md" align="center">
+          <TabList mb="1em">
+            <Tab>Joy</Tab>
+            <Tab>Dam</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              {loading && (
+                <Box m={"6"}>
+                  <HashLoader color={"#ffffff"} />
+                </Box>
+              )}
+              {joyContents.map((content, index) => {
+                return (
+                  <Box
+                    key={content.songId}
+                    border={"1px"}
+                    my={2}
+                    mx={1}
+                    rounded={"md"}
+                  >
+                    <HStack py={"5"} px={4}>
+                      <Text
+                        w={"50%"}
+                        textAlign={"left"}
+                        textOverflow={"ellipsis"}
+                        overflow={"hidden"}
+                        whiteSpace={"nowrap"}
+                        fontSize={"xs"}
+                      >
+                        {content.song}
+                      </Text>
+                      <Text
+                        w={"50%"}
+                        textAlign="left"
+                        textOverflow={"ellipsis"}
+                        overflow={"hidden"}
+                        whiteSpace={"nowrap"}
+                        fontSize={"xs"}
+                        color={"gray.400"}
+                      >
+                        {content.artist}
+                      </Text>
+                    </HStack>
+                  </Box>
+                );
+              })}
+            </TabPanel>
+            <TabPanel>
+              {loading && (
+                <Box m={"6"}>
+                  <HashLoader color={"#ffffff"} />
+                </Box>
+              )}
+
+              {damContents.map((content, index) => {
+                return (
+                  <Box
+                    key={content.songId}
+                    border={"1px"}
+                    my={2}
+                    mx={1}
+                    rounded={"md"}
+                  >
+                    <HStack py={"5"} px={4}>
+                      <Text
+                        w={"50%"}
+                        textAlign={"left"}
+                        textOverflow={"ellipsis"}
+                        overflow={"hidden"}
+                        whiteSpace={"nowrap"}
+                        fontSize={"xs"}
+                      >
+                        {content.song}
+                      </Text>
+                      <Text
+                        w={"50%"}
+                        textAlign="left"
+                        textOverflow={"ellipsis"}
+                        overflow={"hidden"}
+                        whiteSpace={"nowrap"}
+                        fontSize={"xs"}
+                        color={"gray.400"}
+                      >
+                        {content.artist}
+                      </Text>
+                    </HStack>
+                  </Box>
+                );
+              })}
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </Box>
     </Template>
   );
