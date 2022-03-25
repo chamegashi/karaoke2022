@@ -1,5 +1,5 @@
 export const KeyRange = [
-  { key: "mkd2E以下", id: 0 },
+  { key: "mid2E以下", id: 0 },
   { key: "mid2F", id: 1 },
   { key: "mid2F#", id: 2 },
   { key: "mid2G", id: 3 },

@@ -8,7 +8,7 @@ interface Props {
 
 const SearchCard: VFC<Props> = ({ music }) => {
   return (
-    <Box border={"1px"} my={2} mx={1} rounded={"md"}>
+    <Box border={"1px"} my={1} mx={1} rounded={"md"}>
       <HStack py={"5"} px={4}>
         <Text
           w={"50%"}

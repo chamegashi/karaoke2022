@@ -29,7 +29,7 @@ export const firebasePutMusicData = () => {
   return { loading, error, response, getFn };
 };
 
-export const firebaseSearchMusicData = () => {
+export const firebaseGetSearchMusicData = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [response, setResponse] = useState<MusicDatum[]>([]);
   const [error, setError] = useState<Error | null>(null);
@@ -48,6 +48,31 @@ export const firebaseSearchMusicData = () => {
         }
 
         setResponse(ret);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+  return { loading, error, response, getFn };
+};
+
+export const firebaseGetSearchMusicDatum = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [response, setResponse] = useState<MusicDatum>();
+  const [error, setError] = useState<Error | null>(null);
+
+  const getFn = useCallback(async (music_id: string) => {
+    setLoading(true);
+
+    const url = `${musicsUrl}/${music_id}.json`;
+    await axios
+      .get(url)
+      .then(async (res) => {
+        setResponse(res.data);
       })
       .catch((err) => {
         console.error(err);

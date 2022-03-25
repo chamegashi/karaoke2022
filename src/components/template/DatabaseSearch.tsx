@@ -1,5 +1,6 @@
 import { Box, Input, Select, Text } from "@chakra-ui/react";
-import React, { FormEvent, useState, VFC } from "react";
+import router from "next/router";
+import React, { CSSProperties, FormEvent, useState, VFC } from "react";
 import { HashLoader } from "react-spinners";
 
 import { KeyRange } from "../../lib/rangeInfo";
@@ -17,6 +18,9 @@ const DatabaseSearch: VFC = () => {
   };
   const changeMaxKey = (e: FormEvent<HTMLSelectElement>) => {
     setMaxKey(e.currentTarget.value);
+  };
+  const buttonStyle: CSSProperties = {
+    width: "100%",
   };
 
   return (
@@ -58,7 +62,17 @@ const DatabaseSearch: VFC = () => {
       )}
 
       {musicData.map((content) => {
-        return <DatabaseSearchCard music={content} key={content.music_id} />;
+        return (
+          <button
+            key={content.music_id}
+            onClick={() => {
+              router.push("/database/" + content.music_id);
+            }}
+            style={buttonStyle}
+          >
+            <DatabaseSearchCard music={content} />
+          </button>
+        );
       })}
     </Box>
   );

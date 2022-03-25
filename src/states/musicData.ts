@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { firebaseSearchMusicData } from "../api/firebaseDBApi";
+import { firebaseGetSearchMusicData } from "../api/firebaseDBApi";
 import { MusicDatum } from "../lib/types";
 
 export const musicDataState = (user_id: string) => {
   const [allMusicData, setAllMusicData] = useState<MusicDatum[]>([]);
   const [musicData, setMusicData] = useState<MusicDatum[]>([]);
-  const { getFn, response, error, loading } = firebaseSearchMusicData();
+  const { getFn, response, error, loading } = firebaseGetSearchMusicData();
 
   useEffect(() => {
     getFn(user_id);

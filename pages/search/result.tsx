@@ -13,7 +13,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { Content } from "../../src/types";
+import { Content } from "../../src/lib/types";
 import { GetSearchResultData } from "../../src/api/searchApi";
 import Template from "../../src/components/template/Template";
 import SearchResult from "../../src/components/template/SearchResult";
