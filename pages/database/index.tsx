@@ -1,8 +1,8 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import type { NextPage } from "next";
 
-import DatabaseAddComponent from "../../src/components/DatabaseAddComponent";
-import DatabaseSearchComponent from "../../src/components/DatabaseSearchComponent";
+import DatabaseAdd from "../../src/components/template/DatabaseAdd";
+import DatabaseSearch from "../../src/components/template/DatabaseSearch";
 import Template from "../../src/components/template/Template";
 
 const Home: NextPage = () => {
@@ -15,10 +15,10 @@ const Home: NextPage = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <DatabaseSearchComponent />
+            <DatabaseSearch />
           </TabPanel>
           <TabPanel>
-            <DatabaseAddComponent />
+            <DatabaseAdd />
           </TabPanel>
         </TabPanels>
       </Tabs>

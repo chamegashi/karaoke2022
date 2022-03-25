@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { musicsUrl } from "../../config";
-import { MusicDatum } from "../types";
+import { MusicDatum } from "../lib/types";
 
 export const firebasePutMusicData = () => {
   const [loading, setLoading] = useState<boolean>(false);

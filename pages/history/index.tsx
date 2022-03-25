@@ -1,8 +1,8 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import type { NextPage } from "next";
 
-import DatabaseAddComponent from "../../src/components/DatabaseAddComponent";
-import DatabaseSearchComponent from "../../src/components/DatabaseSearchComponent";
+import DatabaseAddComponent from "../../src/components/template/DatabaseAdd";
+import DatabaseSearchComponent from "../../src/components/template/DatabaseSearch";
 import Template from "../../src/components/template/Template";
 
 const History: NextPage = () => {

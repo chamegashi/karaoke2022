@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
 
-import { Content } from "../types";
+import { Content } from "../lib/types";
 
 // const hostname = process.env.NEXT_PUBLIC_BASE_URI;
 const hostname = "https://dry-lake-67755.herokuapp.com/";

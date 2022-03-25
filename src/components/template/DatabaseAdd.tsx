@@ -23,10 +23,10 @@ import { FormEvent, useEffect, useState, VFC } from "react";
 import React from "react";
 import { uuid } from "uuidv4";
 
-import { firebasePutMusicData } from "../api/firebaseDBApi";
-import { KeyRange } from "../lib/rangeInfo";
+import { firebasePutMusicData } from "../../api/firebaseDBApi";
+import { KeyRange } from "../../lib/rangeInfo";
 
-const DatabaseAddComponent: VFC = () => {
+const DatabaseAdd: VFC = () => {
   const { getFn, response } = firebasePutMusicData();
   const [title, setTitle] = useState<string>("");
   const [hiraganaTitle, setHiraganaTitle] = useState<string>("");
@@ -188,4 +188,4 @@ const DatabaseAddComponent: VFC = () => {
   );
 };
 
-export default DatabaseAddComponent;
+export default DatabaseAdd;

@@ -2,23 +2,21 @@ import {
   Box,
   Button,
   Center,
-  HStack,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+import { Content } from "../../src/types";
 import { GetSearchResultData } from "../../src/api/searchApi";
 import Template from "../../src/components/template/Template";
-import { Content } from "../../src/types";
-import HashLoader from "react-spinners/HashLoader";
+import SearchResult from "../../src/components/template/SearchResult";
 
 const Search: NextPage = () => {
   const router = useRouter();
@@ -71,89 +69,16 @@ const Search: NextPage = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              {loading && (
-                <Box m={"6"}>
-                  <HashLoader color={"#ffffff"} />
-                </Box>
-              )}
-              {joyContents.map((content, index) => {
-                return (
-                  <Box
-                    key={content.songId}
-                    border={"1px"}
-                    my={2}
-                    mx={1}
-                    rounded={"md"}
-                  >
-                    <HStack py={"5"} px={4}>
-                      <Text
-                        w={"50%"}
-                        textAlign={"left"}
-                        textOverflow={"ellipsis"}
-                        overflow={"hidden"}
-                        whiteSpace={"nowrap"}
-                        fontSize={"xs"}
-                      >
-                        {content.song}
-                      </Text>
-                      <Text
-                        w={"50%"}
-                        textAlign="left"
-                        textOverflow={"ellipsis"}
-                        overflow={"hidden"}
-                        whiteSpace={"nowrap"}
-                        fontSize={"xs"}
-                        color={"gray.400"}
-                      >
-                        {content.artist}
-                      </Text>
-                    </HStack>
-                  </Box>
-                );
-              })}
+              <SearchResult
+                loading={loading}
+                contents={joyContents}
+              ></SearchResult>
             </TabPanel>
             <TabPanel>
-              {loading && (
-                <Box m={"6"}>
-                  <HashLoader color={"#ffffff"} />
-                </Box>
-              )}
-
-              {damContents.map((content, index) => {
-                return (
-                  <Box
-                    key={content.songId}
-                    border={"1px"}
-                    my={2}
-                    mx={1}
-                    rounded={"md"}
-                  >
-                    <HStack py={"5"} px={4}>
-                      <Text
-                        w={"50%"}
-                        textAlign={"left"}
-                        textOverflow={"ellipsis"}
-                        overflow={"hidden"}
-                        whiteSpace={"nowrap"}
-                        fontSize={"xs"}
-                      >
-                        {content.song}
-                      </Text>
-                      <Text
-                        w={"50%"}
-                        textAlign="left"
-                        textOverflow={"ellipsis"}
-                        overflow={"hidden"}
-                        whiteSpace={"nowrap"}
-                        fontSize={"xs"}
-                        color={"gray.400"}
-                      >
-                        {content.artist}
-                      </Text>
-                    </HStack>
-                  </Box>
-                );
-              })}
+              <SearchResult
+                loading={loading}
+                contents={damContents}
+              ></SearchResult>
             </TabPanel>
           </TabPanels>
         </Tabs>

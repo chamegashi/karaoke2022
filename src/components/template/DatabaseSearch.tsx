@@ -1,13 +1,15 @@
-import { Box, HStack, Input, Select, Text } from "@chakra-ui/react";
+import { Box, Input, Select, Text } from "@chakra-ui/react";
 import React, { FormEvent, useState, VFC } from "react";
+import { HashLoader } from "react-spinners";
 
-import { KeyRange } from "../lib/rangeInfo";
-import { musicDataState } from "../states/musicData";
+import { KeyRange } from "../../lib/rangeInfo";
+import DatabaseSearchCard from "../../part/DatabaseSearchCard";
+import { musicDataState } from "../../states/musicData";
 
-const DatabaseSearchComponent: VFC = () => {
+const DatabaseSearch: VFC = () => {
   const [keyword, setKeyword] = useState<string>("");
   const [maxKey, setMaxKey] = useState<string>("");
-  const { musicData, musicFilter } = musicDataState("massann");
+  const { musicData, musicFilter, loading } = musicDataState("massann");
 
   const changeTitle = (e: FormEvent<HTMLInputElement>) => {
     musicFilter(e.currentTarget.value);
@@ -19,7 +21,7 @@ const DatabaseSearchComponent: VFC = () => {
 
   return (
     <Box>
-      <Box m={2}>
+      <Box mx={1} my={2}>
         <label>
           <Text>キーワード</Text>
           <Input
@@ -28,7 +30,7 @@ const DatabaseSearchComponent: VFC = () => {
           ></Input>
         </label>
       </Box>
-      <Box m={2} mb={8}>
+      <Box mx={1} mt={2} mb={8}>
         <Text>最高音</Text>
         <Select
           placeholder="最高音"
@@ -49,18 +51,17 @@ const DatabaseSearchComponent: VFC = () => {
           })}
         </Select>
       </Box>
-      {musicData.map((music) => {
-        return (
-          <Box key={music.music_id} border={"2px"} m={2} rounded={"md"}>
-            <HStack p={"4"}>
-              <Text>{music.name}</Text>
-              <Text>{music.artist}</Text>
-            </HStack>
-          </Box>
-        );
+      {loading && (
+        <Box my={"12"}>
+          <HashLoader color={"#ffffff"} />
+        </Box>
+      )}
+
+      {musicData.map((content) => {
+        return <DatabaseSearchCard music={content} key={content.music_id} />;
       })}
     </Box>
   );
 };
 
-export default DatabaseSearchComponent;
+export default DatabaseSearch;
