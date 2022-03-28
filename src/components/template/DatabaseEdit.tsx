@@ -21,11 +21,16 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
 } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import Link from "next/link";
+import router from "next/router";
 import { FormEvent, useEffect, useState, VFC } from "react";
 import React from "react";
 
-import { firebasePutMusicData } from "../../api/firebaseDBApi";
+import {
+  firebaseDeleteMusicDatum,
+  firebasePutMusicData,
+} from "../../api/firebaseDBApi";
 import { KeyRange } from "../../lib/rangeInfo";
 import { MusicDatum } from "../../lib/types";
 
@@ -34,7 +39,13 @@ interface Props {
 }
 
 const DatabaseEdit: VFC<Props> = ({ music }) => {
-  const { getFn, response } = firebasePutMusicData();
+  const putMusicData = firebasePutMusicData();
+  const deleteMusicDatum = firebaseDeleteMusicDatum();
+  const toast = useToast();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef<HTMLButtonElement>(null);
+
   const [title, setTitle] = useState<string>(music.name);
   const [hiraganaTitle, setHiraganaTitle] = useState<string>(
     music.hiragarana_name
@@ -44,15 +55,58 @@ const DatabaseEdit: VFC<Props> = ({ music }) => {
   const [maxKey, setMaxKey] = useState<string>("");
   const [maxScore, setMaxScore] = useState<number>(music.max_score);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = React.useRef<HTMLButtonElement>(null);
-
   useEffect(() => {
-    if (!response) {
+    if (!putMusicData.response) {
       return;
     }
-    onOpen();
-  }, [response]);
+    toast({
+      title: "ほじょんされました！",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+      position: "top",
+    });
+  }, [putMusicData.response]);
+
+  useEffect(() => {
+    if (!putMusicData.error) {
+      return;
+    }
+    toast({
+      title: "保存できませんでした",
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+      position: "top",
+    });
+  }, [putMusicData.error]);
+
+  useEffect(() => {
+    if (!deleteMusicDatum.response) {
+      return;
+    }
+    toast({
+      title: "さくじょされました！",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+      position: "top",
+    });
+    router.push("/database");
+  }, [deleteMusicDatum.response]);
+
+  useEffect(() => {
+    if (!putMusicData.error) {
+      return;
+    }
+    toast({
+      title: "削除できませんでした",
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+      position: "top",
+    });
+  }, [deleteMusicDatum.error]);
 
   const changeTitle = (e: FormEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
@@ -71,7 +125,7 @@ const DatabaseEdit: VFC<Props> = ({ music }) => {
   };
 
   const putData = () => {
-    getFn({
+    putMusicData.getFn({
       name: title,
       hiragarana_name: hiraganaTitle,
       artist: artist,
@@ -83,6 +137,11 @@ const DatabaseEdit: VFC<Props> = ({ music }) => {
       user_id: "massann",
       music_id: music.music_id,
     });
+  };
+
+  const deleteData = () => {
+    deleteMusicDatum.deleteFn(music.music_id);
+    onClose();
   };
 
   return (
@@ -209,28 +268,6 @@ const DatabaseEdit: VFC<Props> = ({ music }) => {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              保存完了
-            </AlertDialogHeader>
-
-            <AlertDialogBody>保存完了しました！</AlertDialogBody>
-
-            <AlertDialogFooter>
-              <Button colorScheme="teal" onClick={onClose} ml={3}>
-                了解！
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
-
-      <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
               削除確認
             </AlertDialogHeader>
 
@@ -245,7 +282,7 @@ const DatabaseEdit: VFC<Props> = ({ music }) => {
               >
                 やめる
               </Button>
-              <Button colorScheme="red" onClick={onClose} ml={3}>
+              <Button colorScheme="red" onClick={deleteData} ml={3}>
                 さくじょ！
               </Button>
             </AlertDialogFooter>

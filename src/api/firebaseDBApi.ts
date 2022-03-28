@@ -85,3 +85,28 @@ export const firebaseGetSearchMusicDatum = () => {
   }, []);
   return { loading, error, response, getFn };
 };
+
+export const firebaseDeleteMusicDatum = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [response, setResponse] = useState<string>("");
+  const [error, setError] = useState<Error | null>(null);
+
+  const deleteFn = useCallback(async (music_id: string) => {
+    setLoading(true);
+
+    const url = `${musicsUrl}/${music_id}.json`;
+    await axios
+      .delete(url)
+      .then(async () => {
+        setResponse("ok");
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+  return { loading, error, response, deleteFn };
+};
