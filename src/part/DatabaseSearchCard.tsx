@@ -1,5 +1,6 @@
 import { Box, HStack, Text } from "@chakra-ui/react";
 import React, { VFC } from "react";
+
 import { MusicDatum } from "../lib/types";
 
 interface Props {

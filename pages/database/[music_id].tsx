@@ -1,13 +1,13 @@
 import { Box, Center } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-
-import Template from "../../src/components/template/Template";
-import { firebaseGetSearchMusicDatum } from "../../src/api/firebaseDBApi";
 import { useEffect, useState } from "react";
-import { MusicDatum } from "../../src/lib/types";
-import DatabaseEdit from "../../src/components/template/DatabaseEdit";
 import { HashLoader } from "react-spinners";
+
+import { firebaseGetSearchMusicDatum } from "../../src/api/firebaseDBApi";
+import DatabaseEdit from "../../src/components/template/DatabaseEdit";
+import Template from "../../src/components/template/Template";
+import { MusicDatum } from "../../src/lib/types";
 
 const DatabaseEditPage: NextPage = () => {
   const router = useRouter();
@@ -32,7 +32,7 @@ const DatabaseEditPage: NextPage = () => {
   }, [response]);
 
   return (
-    <Template title="データ変更">
+    <Template title="データ変更" backUrl="/database">
       <Box>
         {loading && (
           <Center m={"6"}>

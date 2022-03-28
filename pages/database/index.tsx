@@ -7,7 +7,7 @@ import Template from "../../src/components/template/Template";
 
 const Home: NextPage = () => {
   return (
-    <Template title="データベース">
+    <Template title="データベース" backUrl="/">
       <Tabs isFitted size="md" variant="enclosed" align="center">
         <TabList mb="1em">
           <Tab>検索</Tab>

@@ -13,7 +13,7 @@ const Search: NextPage = () => {
   };
 
   return (
-    <Template title="検索">
+    <Template title="検索" backUrl="/">
       <Box>
         <Box mx={6}>
           <Center m={1} fontSize={"2xl"}>

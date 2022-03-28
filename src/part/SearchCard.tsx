@@ -1,5 +1,6 @@
 import { Box, HStack, Text } from "@chakra-ui/react";
 import React, { VFC } from "react";
+
 import { Content } from "../lib/types";
 
 interface Props {

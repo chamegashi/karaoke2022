@@ -13,10 +13,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { Content } from "../../src/lib/types";
 import { GetSearchResultData } from "../../src/api/searchApi";
-import Template from "../../src/components/template/Template";
 import SearchResult from "../../src/components/template/SearchResult";
+import Template from "../../src/components/template/Template";
+import { Content } from "../../src/lib/types";
 
 const Search: NextPage = () => {
   const router = useRouter();
@@ -52,7 +52,7 @@ const Search: NextPage = () => {
   }, [error]);
 
   return (
-    <Template title="検索結果">
+    <Template title="検索結果" backUrl="/search">
       <Box>
         <Center>
           <Link href="/search">

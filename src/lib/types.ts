@@ -33,3 +33,5 @@ export interface sendMusicData {
   modified: number;
   created: number;
 }
+
+export type DamStirng = "Dx" | "Dxg" | "Ai";

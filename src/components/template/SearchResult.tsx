@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React, { VFC } from "react";
 import { HashLoader } from "react-spinners";
+
 import { Content } from "../../lib/types";
 import SearchCard from "../../part/SearchCard";
 

@@ -1,58 +1,36 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { useCallback, useState } from "react";
 
-import { musicsUrl } from "../../config";
-import { MusicDatum } from "../lib/types";
+import { DamStirng } from "../lib/types";
 
-export const firebasePutMusicData = () => {
+export const DamHistoryData = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState<Error | null>(null);
 
-  const getFn = useCallback(async (data: MusicDatum) => {
+  const getFn = useCallback(async (dam: DamStirng) => {
     setLoading(true);
 
-    const url = `${musicsUrl}/${data.music_id}.json`;
+    const url = "";
+
+    const config: AxiosRequestConfig = {
+      responseType: "document",
+      validateStatus: function (status) {
+        return status < 500; // Resolve only if the status code is less than 500
+      },
+    };
     await axios
-      .put(url, data)
+      .get(url, config)
       .then(async (res) => {
         const responseData = await res.data;
+        const parser = new DOMParser();
+        const xmlData = parser.parseFromString(responseData, "text/xml");
+        console.log(xmlData);
         setResponse(responseData);
       })
-      .catch((err) => {
-        console.error(err);
-        setError(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-  return { loading, error, response, getFn };
-};
-
-export const firebaseSearchMusicData = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [response, setResponse] = useState<MusicDatum[]>([]);
-  const [error, setError] = useState<Error | null>(null);
-
-  const getFn = useCallback(async (user_id: string) => {
-    setLoading(true);
-
-    const url = `${musicsUrl}.json?orderBy="user_id"&equalTo="${user_id}"&print=pretty`;
-    await axios
-      .get(url)
-      .then(async (res) => {
-        const responseData: { [key: string]: MusicDatum } = await res.data;
-        const ret: MusicDatum[] = [];
-        for (const [, value] of Object.entries(responseData)) {
-          ret.push(value);
-        }
-
-        setResponse(ret);
-      })
-      .catch((err) => {
-        console.error(err);
-        setError(err);
+      .catch(({ response }) => {
+        console.log(response);
+        setError(response);
       })
       .finally(() => {
         setLoading(false);

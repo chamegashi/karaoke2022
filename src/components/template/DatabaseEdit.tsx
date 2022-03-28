@@ -21,6 +21,7 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { FormEvent, useEffect, useState, VFC } from "react";
 import React from "react";
 import { uuid } from "uuidv4";
@@ -28,7 +29,6 @@ import { uuid } from "uuidv4";
 import { firebasePutMusicData } from "../../api/firebaseDBApi";
 import { KeyRange } from "../../lib/rangeInfo";
 import { MusicDatum } from "../../lib/types";
-import Link from "next/link";
 
 interface Props {
   music: MusicDatum;
@@ -88,6 +88,13 @@ const DatabaseEdit: VFC<Props> = ({ music }) => {
 
   return (
     <Box>
+      <Center>
+        <Link href="/database/">
+          <Button colorScheme={"gray"} variant="outline" m={4} size={"lg"}>
+            前の画面に戻る
+          </Button>
+        </Link>
+      </Center>
       <Box m={2}>
         <label>
           <Text>タイトル</Text>
@@ -186,11 +193,9 @@ const DatabaseEdit: VFC<Props> = ({ music }) => {
       </Box>
       <Center>
         <HStack>
-          <Link href="/database/">
-            <Button colorScheme={"gray"} variant="outline" m={4} size={"lg"}>
-              戻る
-            </Button>
-          </Link>
+          <Button colorScheme={"red"} m={4} size={"lg"} onClick={onOpen}>
+            削除
+          </Button>
           <Button colorScheme={"teal"} m={4} size={"lg"}>
             保存
           </Button>
@@ -213,6 +218,36 @@ const DatabaseEdit: VFC<Props> = ({ music }) => {
             <AlertDialogFooter>
               <Button colorScheme="teal" onClick={onClose} ml={3}>
                 了解！
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              削除確認
+            </AlertDialogHeader>
+
+            <AlertDialogBody>削除しますか？</AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button
+                colorScheme="gray"
+                variant="outline"
+                onClick={onClose}
+                ml={3}
+              >
+                やめる
+              </Button>
+              <Button colorScheme="red" onClick={onClose} ml={3}>
+                さくじょ！
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
