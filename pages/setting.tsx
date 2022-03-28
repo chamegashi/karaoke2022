@@ -1,6 +1,4 @@
-import { Button, VStack } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import Link from "next/link";
 
 import Template from "../src/components/template/Template";
 

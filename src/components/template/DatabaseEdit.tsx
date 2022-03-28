@@ -24,7 +24,6 @@ import {
 import Link from "next/link";
 import { FormEvent, useEffect, useState, VFC } from "react";
 import React from "react";
-import { uuid } from "uuidv4";
 
 import { firebasePutMusicData } from "../../api/firebaseDBApi";
 import { KeyRange } from "../../lib/rangeInfo";
@@ -82,7 +81,7 @@ const DatabaseEdit: VFC<Props> = ({ music }) => {
       created: music.created,
       modified: new Date().getTime(),
       user_id: "massann",
-      music_id: uuid(),
+      music_id: music.music_id,
     });
   };
 
@@ -196,7 +195,7 @@ const DatabaseEdit: VFC<Props> = ({ music }) => {
           <Button colorScheme={"red"} m={4} size={"lg"} onClick={onOpen}>
             削除
           </Button>
-          <Button colorScheme={"teal"} m={4} size={"lg"}>
+          <Button colorScheme={"teal"} m={4} size={"lg"} onClick={putData}>
             保存
           </Button>
         </HStack>

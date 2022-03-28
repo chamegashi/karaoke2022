@@ -13,10 +13,11 @@ const DatabaseSearch: VFC = () => {
   const { musicData, musicFilter, loading } = musicDataState("massann");
 
   const changeTitle = (e: FormEvent<HTMLInputElement>) => {
-    musicFilter(e.currentTarget.value);
+    musicFilter(e.currentTarget.value, maxKey);
     setKeyword(e.currentTarget.value);
   };
   const changeMaxKey = (e: FormEvent<HTMLSelectElement>) => {
+    musicFilter(keyword, e.currentTarget.value);
     setMaxKey(e.currentTarget.value);
   };
   const buttonStyle: CSSProperties = {

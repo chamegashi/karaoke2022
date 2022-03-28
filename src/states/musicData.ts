@@ -31,15 +31,33 @@ export const musicDataState = (user_id: string) => {
     getFn(user_id);
   };
 
-  const musicFilter = (keyword: string) => {
-    const newMusics: MusicDatum[] = allMusicData.filter((music) => {
-      return (
-        music.name.includes(keyword) ||
-        music.artist.includes(keyword) ||
-        music.hiragarana_name.includes(keyword)
-      );
-    });
-    setMusicData(newMusics);
+  const musicFilter = (keyword: string, maxKey: string) => {
+    let newMusics: MusicDatum[];
+    if (keyword && maxKey) {
+      newMusics = allMusicData.filter((music) => {
+        return (
+          (music.name.includes(keyword) ||
+            music.artist.includes(keyword) ||
+            music.hiragarana_name.includes(keyword)) &&
+          music.max_range === maxKey
+        );
+      });
+      setMusicData(newMusics);
+    } else if (maxKey) {
+      newMusics = allMusicData.filter((music) => {
+        music.max_range === maxKey;
+      });
+      setMusicData(newMusics);
+    } else {
+      newMusics = allMusicData.filter((music) => {
+        return (
+          music.name.includes(keyword) ||
+          music.artist.includes(keyword) ||
+          music.hiragarana_name.includes(keyword)
+        );
+      });
+      setMusicData(newMusics);
+    }
   };
 
   return { musicData, loading, updateMusicData, musicFilter };

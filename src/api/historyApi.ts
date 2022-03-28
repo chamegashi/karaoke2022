@@ -11,7 +11,7 @@ export const DamHistoryData = () => {
   const getFn = useCallback(async (dam: DamStirng) => {
     setLoading(true);
 
-    const url = "";
+    const url = dam;
 
     const config: AxiosRequestConfig = {
       responseType: "document",

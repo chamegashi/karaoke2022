@@ -1,15 +1,5 @@
-import {
-  Box,
-  Button,
-  Center,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from "@chakra-ui/react";
+import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -20,7 +10,6 @@ import { Content } from "../../src/lib/types";
 
 const Search: NextPage = () => {
   const router = useRouter();
-  const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [joyContents, setJoyContents] = useState<Content[]>([]);
   const [damContents, setDamContents] = useState<Content[]>([]);
 
@@ -32,7 +21,6 @@ const Search: NextPage = () => {
     }
     const query = router.query;
     if (query.keyword && typeof query.keyword === "string") {
-      setSearchKeyword(query.keyword);
       getFn(query.keyword);
     }
   }, [router.query]);
@@ -54,14 +42,6 @@ const Search: NextPage = () => {
   return (
     <Template title="検索結果" backUrl="/search">
       <Box>
-        <Center>
-          <Link href="/search">
-            <Button colorScheme={"teal"} mb={7}>
-              前の画面に戻る
-            </Button>
-          </Link>
-        </Center>
-
         <Tabs isFitted size="md" align="center">
           <TabList mb="1em">
             <Tab>Joy</Tab>

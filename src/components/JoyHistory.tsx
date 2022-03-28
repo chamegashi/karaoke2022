@@ -1,11 +1,11 @@
-import { Box, Button } from "@chakra-ui/react";
-import { FormEvent, useEffect, useState, VFC } from "react";
+import { Box } from "@chakra-ui/react";
+import { useEffect, VFC } from "react";
 import React from "react";
 
 import { firebasePutMusicData } from "../api/firebaseDBApi";
 
 const DatabaseAddComponent: VFC = () => {
-  const { getFn, response } = firebasePutMusicData();
+  const { response } = firebasePutMusicData();
 
   useEffect(() => {
     if (!response) {
