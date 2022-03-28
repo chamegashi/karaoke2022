@@ -1,4 +1,5 @@
 import { Box, Button, HStack, Text } from "@chakra-ui/react";
+import router from "next/router";
 import React, { useState, VFC } from "react";
 
 import { Content } from "../lib/types";
@@ -80,7 +81,21 @@ const SearchCard: VFC<Props> = ({ content }) => {
             </Text>
           </HStack>
           <HStack py={"1"} px={2}>
-            <Button w={"50%"} border={"1px"} bg={"gray.800"}>
+            <Button
+              w={"50%"}
+              border={"1px"}
+              bg={"gray.800"}
+              onClick={() =>
+                router.push(
+                  "/search/addData?title=" +
+                    content.song +
+                    "&hiraganaTitle=" +
+                    content.hiraganaSong +
+                    "&artist=" +
+                    content.artist
+                )
+              }
+            >
               <Text color="white" fontWeight={"medium"} fontSize={"xs"}>
                 キーを登録する
               </Text>

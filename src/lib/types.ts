@@ -2,6 +2,7 @@ export interface Content {
   artist: string;
   song: string;
   songId: string;
+  hiraganaSong: string;
 }
 
 export interface ContentsResponse {
