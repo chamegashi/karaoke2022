@@ -36,3 +36,12 @@ export interface sendMusicData {
 }
 
 export type DamStirng = "Dx" | "Dxg" | "Ai";
+
+export interface HistoryData {
+  title: string;
+  hiraganaTitle: string;
+  artist: string;
+  key: string;
+  score: string;
+  created: string;
+}

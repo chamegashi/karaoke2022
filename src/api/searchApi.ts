@@ -4,8 +4,6 @@ import { useCallback, useState } from "react";
 import { herokuUrl } from "../../config";
 import { Content } from "../lib/types";
 
-const hostname = herokuUrl;
-
 export type contentsResponse = {
   damResponce: Content[];
   joyResponce: Content[];
@@ -19,7 +17,7 @@ export const GetSearchResultData = () => {
   const getFn = useCallback(async (keyword: string) => {
     setLoading(true);
 
-    const url = `${hostname}/api/search?keyword=` + keyword;
+    const url = `${herokuUrl}/api/search?keyword=` + keyword;
 
     await axios
       .get<contentsResponse>(url)

@@ -1,19 +1,25 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import { useEffect } from "react";
 
-import { DamHistoryData } from "../../src/api/historyApi";
+import HistoryDam from "../../src/components/template/HistoryDam";
 import Template from "../../src/components/template/Template";
 const History: NextPage = () => {
-  const { getFn } = DamHistoryData();
-
-  useEffect(() => {
-    getFn("Ai");
-  }, []);
-
   return (
     <Template title="履歴" backUrl="/">
-      <Box></Box>
+      <Box>
+        <Tabs isFitted size="md" align="center">
+          <TabList mb="1em">
+            <Tab>Joy</Tab>
+            <Tab>Dam</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel></TabPanel>
+            <TabPanel>
+              <HistoryDam />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Box>
     </Template>
   );
 };
