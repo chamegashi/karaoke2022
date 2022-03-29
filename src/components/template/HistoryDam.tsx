@@ -1,26 +1,31 @@
-import { Box } from "@chakra-ui/react";
-import React, { useEffect, VFC } from "react";
-import { HashLoader } from "react-spinners";
+import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import React, { VFC } from "react";
 
-import { DamHistoryData } from "../../api/historyApi";
-import HistoryCard from "../../part/HistoryCard";
+import HistoryDamAi from "./HistoryDamAi";
+import HistoryDamDx from "./HistoryDamDx";
+import HistoryDamDxG from "./HistoryDamDxG";
 
 const HistoryDam: VFC = () => {
-  const { getFn, loading, response } = DamHistoryData();
-
-  useEffect(() => {
-    getFn("Ai", 1, "ODAwMDA2ODIyMzMzODU0");
-  }, []);
   return (
     <Box>
-      {loading && (
-        <Box m={"6"}>
-          <HashLoader color={"#ffffff"} />
-        </Box>
-      )}
-      {response.map((data) => {
-        return <HistoryCard key={data.created} historyData={data} />;
-      })}
+      <Tabs isFitted size="md" align="center" variant="enclosed">
+        <TabList mb="1em">
+          <Tab>Ai</Tab>
+          <Tab>DxG</Tab>
+          <Tab>Dx</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <HistoryDamAi />
+          </TabPanel>
+          <TabPanel>
+            <HistoryDamDxG />
+          </TabPanel>
+          <TabPanel>
+            <HistoryDamDx />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </Box>
   );
 };
