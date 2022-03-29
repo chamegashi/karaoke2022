@@ -4,7 +4,6 @@ import { useCallback, useState } from "react";
 import { herokuUrl } from "../../config";
 import { Content } from "../lib/types";
 
-// const hostname = process.env.NEXT_PUBLIC_BASE_URI;
 const hostname = herokuUrl;
 
 export type contentsResponse = {
