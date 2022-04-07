@@ -2,7 +2,7 @@ import axios from "axios";
 import { useCallback, useState } from "react";
 
 import { herokuUrl } from "../../config";
-import { DamStirng, HistoryData } from "../lib/types";
+import { DamString, HistoryData } from "../lib/types";
 
 export const DamHistoryData = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -10,7 +10,7 @@ export const DamHistoryData = () => {
   const [error, setError] = useState<Error | null>(null);
 
   const getFn = useCallback(
-    async (version: DamStirng, page: number, damId: string) => {
+    async (version: DamString, page: number, damId: string) => {
       setLoading(true);
 
       const url = `${herokuUrl}/api/history?version=${version}&page=${page}&id=${damId}`;
