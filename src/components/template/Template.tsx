@@ -31,11 +31,11 @@ const Template: VFC<Props> = ({ title, children, backUrl }) => {
       <Center fontSize="2xl" p={"6"} h="20%">
         {title}
       </Center>
-      {children}
+      <Box pb={16}> {children}</Box>
       <Flex
-        h={"12"}
+        h={"16"}
         bg={"gray.700"}
-        position={"absolute"}
+        position={"fixed"}
         bottom={"0"}
         left={"0"}
         w={"100%"}
@@ -45,7 +45,7 @@ const Template: VFC<Props> = ({ title, children, backUrl }) => {
         {backUrl && (
           <Button
             w={"50%"}
-            h={"90%"}
+            h={"70%"}
             bg={"gray.800"}
             border={"1px"}
             mx={1}
@@ -58,7 +58,7 @@ const Template: VFC<Props> = ({ title, children, backUrl }) => {
         )}
         <Button
           w={"50%"}
-          h={"90%"}
+          h={"70%"}
           bg={"gray.800"}
           border={"1px"}
           onClick={() => {

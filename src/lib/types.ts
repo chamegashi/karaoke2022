@@ -35,7 +35,7 @@ export interface sendMusicData {
   created: number;
 }
 
-export type DamStirng = "Dx" | "DxG" | "Ai";
+export type DamString = "Dx" | "DxG" | "Ai";
 
 export interface HistoryData {
   title: string;

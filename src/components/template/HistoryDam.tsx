@@ -1,9 +1,7 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import React, { VFC } from "react";
 
-import HistoryDamAi from "./HistoryDamAi";
-import HistoryDamDx from "./HistoryDamDx";
-import HistoryDamDxG from "./HistoryDamDxG";
+import HistoryDamTemplate from "./HistoryDamTemplate";
 
 const HistoryDam: VFC = () => {
   return (
@@ -16,13 +14,13 @@ const HistoryDam: VFC = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <HistoryDamAi />
+            <HistoryDamTemplate damType="Ai" />
           </TabPanel>
           <TabPanel>
-            <HistoryDamDxG />
+            <HistoryDamTemplate damType="DxG" />
           </TabPanel>
           <TabPanel>
-            <HistoryDamDx />
+            <HistoryDamTemplate damType="Dx" />
           </TabPanel>
         </TabPanels>
       </Tabs>
