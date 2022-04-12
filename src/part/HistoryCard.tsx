@@ -16,7 +16,6 @@ const HistoryCard: VFC<Props> = ({ historyData }) => {
         <Box
           border={"1px"}
           my={2}
-          mx={1}
           rounded={"md"}
           onClick={() => {
             setClicked(true);
@@ -25,6 +24,7 @@ const HistoryCard: VFC<Props> = ({ historyData }) => {
           <HStack py={3} px={2}>
             <VStack w={"50%"}>
               <Text
+                w={"100%"}
                 textAlign={"left"}
                 textOverflow={"ellipsis"}
                 overflow={"hidden"}
@@ -34,6 +34,7 @@ const HistoryCard: VFC<Props> = ({ historyData }) => {
                 {historyData.title}
               </Text>
               <Text
+                w={"100%"}
                 textAlign="left"
                 textOverflow={"ellipsis"}
                 overflow={"hidden"}
@@ -46,6 +47,7 @@ const HistoryCard: VFC<Props> = ({ historyData }) => {
             </VStack>
             <VStack w={"50%"}>
               <Text
+                w={"100%"}
                 textAlign={"left"}
                 textOverflow={"ellipsis"}
                 overflow={"hidden"}
@@ -56,6 +58,7 @@ const HistoryCard: VFC<Props> = ({ historyData }) => {
                 {historyData.created}
               </Text>
               <Text
+                w={"100%"}
                 textAlign="left"
                 textOverflow={"ellipsis"}
                 overflow={"hidden"}
@@ -73,7 +76,6 @@ const HistoryCard: VFC<Props> = ({ historyData }) => {
         <Box
           border={"1px"}
           my={2}
-          mx={1}
           rounded={"md"}
           onClick={() => {
             setClicked(false);
@@ -82,6 +84,7 @@ const HistoryCard: VFC<Props> = ({ historyData }) => {
           <HStack py={3} px={2} borderBottom={"1px"}>
             <VStack w={"50%"}>
               <Text
+                w={"100%"}
                 textAlign={"left"}
                 textOverflow={"ellipsis"}
                 overflow={"hidden"}
@@ -91,6 +94,7 @@ const HistoryCard: VFC<Props> = ({ historyData }) => {
                 {historyData.title}
               </Text>
               <Text
+                w={"100%"}
                 textAlign="left"
                 textOverflow={"ellipsis"}
                 overflow={"hidden"}
@@ -103,6 +107,7 @@ const HistoryCard: VFC<Props> = ({ historyData }) => {
             </VStack>
             <VStack w={"50%"}>
               <Text
+                w={"100%"}
                 textAlign={"left"}
                 textOverflow={"ellipsis"}
                 overflow={"hidden"}
@@ -113,6 +118,7 @@ const HistoryCard: VFC<Props> = ({ historyData }) => {
                 {historyData.created}
               </Text>
               <Text
+                w={"100%"}
                 textAlign="left"
                 textOverflow={"ellipsis"}
                 overflow={"hidden"}

@@ -39,7 +39,7 @@ const Search: NextPage = () => {
         {!loading && (
           <AddData
             artist={artist}
-            key={Number(key)}
+            keyRenge={key}
             title={title}
             score={Number(score)}
           />

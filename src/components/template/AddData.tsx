@@ -32,7 +32,7 @@ interface Props {
   title?: string;
   artist?: string;
   hiragataTitle?: string;
-  key?: number;
+  keyRenge?: string;
   score?: number;
 }
 
@@ -45,7 +45,9 @@ const AddData: VFC<Props> = (props) => {
   const [artist, setArtist] = useState<string>(
     props.artist ? props.artist : ""
   );
-  const [key, setKey] = useState<number>(props.key ? props.key : 0);
+  const [key, setKey] = useState<number>(
+    props.keyRenge ? Number(props.keyRenge) : 0
+  );
   const [maxKey, setMaxKey] = useState<string>("");
   const [maxScore, setMaxScore] = useState<number>(
     props.score ? props.score : 0
@@ -158,10 +160,10 @@ const AddData: VFC<Props> = (props) => {
           })}
         </Select>
       </Box>
-      <Box m={2}>
+      <Box m={4}>
         <Text mb={8}>キー</Text>
         <Slider
-          defaultValue={0}
+          defaultValue={key}
           min={-6}
           max={6}
           step={1}
@@ -185,7 +187,7 @@ const AddData: VFC<Props> = (props) => {
           >
             {key}
           </SliderMark>
-          <SliderTrack>
+          <SliderTrack defaultValue={key}>
             <SliderFilledTrack />
           </SliderTrack>
           <SliderThumb />
